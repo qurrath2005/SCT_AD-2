@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Smart To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #6200ee;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .test-button {
+            background-color: #6200ee;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Smart To-Do List App Tester</h1>
+    <p>This page allows you to test the functionality of the Smart To-Do List app without opening it directly.</p>
+    
+    <div class="test-section">
+        <h2>1. Test Local Storage</h2>
+        <button class="test-button" onclick="testLocalStorage()">Test Storage</button>
+        <div id="storage-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. Test Task Creation</h2>
+        <button class="test-button" onclick="createSampleTask()">Create Sample Task</button>
+        <div id="task-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. View All Tasks</h2>
+        <button class="test-button" onclick="viewAllTasks()">View Tasks</button>
+        <div id="view-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. Open Main App</h2>
+        <button class="test-button" onclick="openMainApp()">Open App</button>
+        <p>This will open the main app in a new tab.</p>
+    </div>
+    
+    <script>
+        // Test if localStorage is available
+        function testLocalStorage() {
+            const result = document.getElementById('storage-result');
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                result.innerHTML = '✅ Local Storage is working correctly.';
+            } catch (e) {
+                result.innerHTML = '❌ Local Storage is not available: ' + e.message;
+            }
+        }
+        
+        // Create a sample task
+        function createSampleTask() {
+            const result = document.getElementById('task-result');
+            try {
+                // Get existing tasks or create empty array
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                
+                // Create a new task
+                const newTask = {
+                    id: Date.now().toString(),
+                    title: 'Sample Task ' + Math.floor(Math.random() * 100),
+                    description: 'This is a sample task created from the test page.',
+                    dueDate: '2023-12-31',
+                    dueTime: '12:00',
+                    priority: 'medium',
+                    tags: ['work', 'urgent'],
+                    createdAt: new Date().toISOString(),
+                    pomodoroCount: 0
+                };
+                
+                // Add to tasks array
+                tasks.push(newTask);
+                
+                // Save to localStorage
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                
+                result.innerHTML = `✅ Sample task created: "${newTask.title}"`;
+            } catch (e) {
+                result.innerHTML = '❌ Failed to create task: ' + e.message;
+            }
+        }
+        
+        // View all tasks
+        function viewAllTasks() {
+            const result = document.getElementById('view-result');
+            try {
+                const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+                
+                if (tasks.length === 0) {
+                    result.innerHTML = 'No tasks found. Create a sample task first.';
+                    return;
+                }
+                
+                let html = `<p>Found ${tasks.length} tasks:</p><ul>`;
+                
+                tasks.forEach(task => {
+                    html += `<li><strong>${task.title}</strong> - Priority: ${task.priority}, Tags: ${task.tags.join(', ')}</li>`;
+                });
+                
+                html += '</ul>';
+                result.innerHTML = html;
+            } catch (e) {
+                result.innerHTML = '❌ Failed to view tasks: ' + e.message;
+            }
+        }
+        
+        // Open main app
+        function openMainApp() {
+            window.open('index.html', '_blank');
+        }
+        
+        // Run storage test on load
+        window.onload = testLocalStorage;
+    </script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart To-Do List App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Smart To-Do List</h1>
+            <div class="theme-toggle">
+                <span class="material-icons">dark_mode</span>
+            </div>
+        </header>
+
+        <div class="filter-container">
+            <div class="filter-chips">
+                <div class="chip" data-tag="work">
+                    <span class="chip-text">Work</span>
+                </div>
+                <div class="chip" data-tag="personal">
+                    <span class="chip-text">Personal</span>
+                </div>
+                <div class="chip" data-tag="urgent">
+                    <span class="chip-text">Urgent</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="tasks-container">
+            <div id="tasks-list">
+                <!-- Tasks will be added here dynamically -->
+                <div class="empty-state">
+                    <p>No tasks yet. Add one!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="voice-input-container">
+            <button id="voice-input-btn" class="voice-btn">
+                <span class="material-icons">mic</span>
+            </button>
+            <div class="voice-status">Click to speak</div>
+        </div>
+
+        <div class="add-task-container">
+            <button id="add-task-btn" class="fab">
+                <span class="material-icons">add</span>
+            </button>
+        </div>
+
+        <!-- Add/Edit Task Modal -->
+        <div id="task-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Add Task</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form id="task-form">
+                        <div class="form-group">
+                            <label for="task-title">Task Title</label>
+                            <input type="text" id="task-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-description">Description (optional)</label>
+                            <textarea id="task-description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="task-due-date">Due Date</label>
+                            <input type="date" id="task-due-date">
+                        </div>
+                        <div class="form-group">
+                            <label for="task-due-time">Due Time</label>
+                            <input type="time" id="task-due-time">
+                        </div>
+                        <div class="form-group">
+                            <label>Priority</label>
+                            <div class="priority-options">
+                                <label class="radio-container">
+                                    <input type="radio" name="priority" value="low">
+                                    <span class="radio-label">Low</span>
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="priority" value="medium" checked>
+                                    <span class="radio-label">Medium</span>
+                                </label>
+                                <label class="radio-container">
+                                    <input type="radio" name="priority" value="high">
+                                    <span class="radio-label">High</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Tags</label>
+                            <div class="tags-options">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="tags" value="work">
+                                    <span class="checkbox-label">Work</span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="tags" value="personal">
+                                    <span class="checkbox-label">Personal</span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="tags" value="urgent">
+                                    <span class="checkbox-label">Urgent</span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input type="checkbox" name="tags" value="other">
+                                    <span class="checkbox-label">Other</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Save Task</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pomodoro Timer Modal -->
+        <div id="pomodoro-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Pomodoro Timer</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="pomodoro-container">
+                        <h3 id="pomodoro-task-title">Task Title</h3>
+                        <div class="timer-status">Focus Time</div>
+                        <div class="timer-display">25:00</div>
+                        <div class="timer-progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <div class="timer-controls">
+                            <button id="start-pause-btn" class="btn-primary">Start</button>
+                            <button id="reset-btn" class="btn-secondary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

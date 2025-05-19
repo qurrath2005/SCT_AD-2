@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smart Todo List</string>
+    
+    <!-- Main Activity -->
+    <string name="add_task">Add Task</string>
+    <string name="filter_tasks">Filter Tasks</string>
+    <string name="no_tasks">No tasks yet. Add one!</string>
+    <string name="search_tasks">Search tasks</string>
+    
+    <!-- Task Item -->
+    <string name="delete_task">Delete Task</string>
+    <string name="edit_task">Edit Task</string>
+    <string name="start_pomodoro">Start Pomodoro</string>
+    
+    <!-- Add/Edit Task -->
+    <string name="task_title">Task Title</string>
+    <string name="task_description">Description (optional)</string>
+    <string name="task_due_date">Due Date</string>
+    <string name="task_due_time">Due Time</string>
+    <string name="task_priority">Priority</string>
+    <string name="task_tags">Tags</string>
+    <string name="save_task">Save Task</string>
+    <string name="cancel">Cancel</string>
+    <string name="use_voice">Use Voice</string>
+    
+    <!-- Priority Levels -->
+    <string name="priority_low">Low</string>
+    <string name="priority_medium">Medium</string>
+    <string name="priority_high">High</string>
+    
+    <!-- Tags -->
+    <string name="tag_work">Work</string>
+    <string name="tag_personal">Personal</string>
+    <string name="tag_urgent">Urgent</string>
+    <string name="tag_other">Other</string>
+    
+    <!-- Pomodoro Timer -->
+    <string name="pomodoro_title">Pomodoro Timer</string>
+    <string name="start_timer">Start</string>
+    <string name="pause_timer">Pause</string>
+    <string name="reset_timer">Reset</string>
+    <string name="pomodoro_complete">Pomodoro Complete!</string>
+    <string name="take_a_break">Take a break</string>
+    
+    <!-- Notifications -->
+    <string name="notification_channel_name">Task Reminders</string>
+    <string name="notification_channel_description">Notifications for task reminders</string>
+    <string name="task_due_soon">Task due soon</string>
+    
+    <!-- Voice Input -->
+    <string name="voice_prompt">Speak now…</string>
+    <string name="voice_error">Could not recognize speech</string>
+</resources>
